@@ -137,4 +137,3 @@ Language TypeScript 5
 📄 Лицензия
 ​Этот проект распространяется под лицензией MIT.
 ​<div align="center">
-# content://com.estrongs.files/storage/emulated/0/Download/bolt_diy_demo.html
