@@ -1,5 +1,5 @@
 <div align="center">
-
+content://com.estrongs.files/storage/emulated/0/Download/bolt_diy_demo.html
 <img src="https://raw.githubusercontent.com/stackblitz-labs/bolt.diy/main/public/logo-light-styled.png" alt="bolt.diy" width="180" />
 
 # ⚡ bolt.diy
