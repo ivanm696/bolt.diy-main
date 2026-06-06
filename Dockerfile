@@ -9,8 +9,8 @@ ENV CI=true
 # Use pnpm
 RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 
-# Ensure git is available for build and runtime scripts
-RUN apt-get update && apt-get install -y --no-install-recommends git \
+# Ensure git and openssh-client are available for build and runtime scripts
+RUN apt-get update && apt-get install -y --no-install-recommends git openssh-client \
   && rm -rf /var/lib/apt/lists/*
 
 # Accept (optional) build-time public URL for Remix/Vite (Coolify can pass it)
@@ -19,6 +19,10 @@ ENV VITE_PUBLIC_APP_URL=${VITE_PUBLIC_APP_URL}
 
 # Install deps efficiently
 COPY package.json pnpm-lock.yaml* ./
+
+# Force Git to use HTTPS instead of SSH for public repositories (fixes node-gyp fetch)
+RUN git config --global url."https://github.com/".insteadOf "git@github.com:"
+
 RUN pnpm fetch
 
 # Copy source and build
