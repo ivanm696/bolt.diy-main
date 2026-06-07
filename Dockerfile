@@ -1,5 +1,6 @@
 # ---- build stage ----
 FROM node:22-bookworm-slim AS build
+LABEL org.opencontainers.image.description="AI-powered full-stack web development in the browser (Remix + Cloudflare + WebContainer)"
 WORKDIR /app
 
 # CI-friendly env
