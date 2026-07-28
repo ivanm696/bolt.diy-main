@@ -19,6 +19,15 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    resolve: {
+      // Ensure a single instance of React across app code and pre-bundled deps.
+      // Without this, Vite can end up with more than one copy of React, which
+      // triggers "Invalid hook call" / "Cannot read properties of null (reading 'useState')".
+      dedupe: ['react', 'react-dom'],
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+    },
     plugins: [
       nodePolyfills({
         include: ['buffer', 'process', 'util', 'stream'],
