@@ -12,7 +12,7 @@
   },
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",
-    "build": "remix vite:build",
+    "build": "vite build",
     "dev": "node pre-start.cjs  && remix vite:dev",
     "test": "vitest --run",
     "test:watch": "vitest",
@@ -146,7 +146,7 @@
     "react-markdown": "^9.0.1",
     "react-qrcode-logo": "^3.0.0",
     "react-resizable-panels": "^2.1.7",
-    "react-router": "^8.3.0",
+    "react-router": "^7.1.0",
     "react-toastify": "^10.0.6",
     "react-window": "^1.8.11",
     "rehype-raw": "^7.0.0",
@@ -195,7 +195,7 @@
     "is-ci": "^3.0.1",
     "jsdom": "^26.0.0",
     "node-fetch": "^3.3.2",
-    "pnpm": "^10.28.2",
+    "pnpm": "^9.15.0",
     "prettier": "^3.5.3",
     "rimraf": "^4.4.1",
     "sass-embedded": "^1.81.0",
@@ -213,5 +213,5 @@
   "resolutions": {
     "@typescript-eslint/utils": "^8.0.0-alpha.30"
   },
-  "packageManager": "pnpm@9.14.4"
-}
+  "packageManager": "pnpm@9.15.0"
+  }
