@@ -1,4 +1,5 @@
 import { cloudflareDevProxyVitePlugin as remixCloudflareDevProxy, vitePlugin as remixVitePlugin } from '@remix-run/dev';
+import path from 'node:path';
 import UnoCSS from 'unocss/vite';
 import { defineConfig, type ViteDevServer } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
@@ -20,10 +21,17 @@ export default defineConfig((config) => {
       target: 'esnext',
     },
     resolve: {
-      // Keep Remix, React DOM, and all client packages on one React instance.
-      // Without this, pnpm's peer paths can be optimized as separate modules,
-      // which leaves React's hook dispatcher unset inside RemixBrowser.
+      // Remix and react-dom must resolve the exact same React files. With pnpm,
+      // peer dependency paths can otherwise become separate Vite module IDs.
+      alias: {
+        react: path.resolve('node_modules/react'),
+        'react-dom': path.resolve('node_modules/react-dom'),
+      },
       dedupe: ['react', 'react-dom'],
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      force: true,
     },
     plugins: [
       nodePolyfills({
