@@ -19,6 +19,12 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    resolve: {
+      // Keep Remix, React DOM, and all client packages on one React instance.
+      // Without this, pnpm's peer paths can be optimized as separate modules,
+      // which leaves React's hook dispatcher unset inside RemixBrowser.
+      dedupe: ['react', 'react-dom'],
+    },
     plugins: [
       nodePolyfills({
         include: ['buffer', 'process', 'util', 'stream'],
