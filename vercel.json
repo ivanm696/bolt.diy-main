@@ -4,7 +4,7 @@
   "outputDirectory": "build/client",
   "devCommand": "pnpm run dev",
   "installCommand": "pnpm install",
-  "framework": null,
+  "framework": "remix",
   "headers": [
     {
       "source": "/(.*)",
