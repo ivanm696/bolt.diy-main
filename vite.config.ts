@@ -12,6 +12,9 @@ export default defineConfig((config) => {
   Object.assign(process.env, env);
 
   return {
+    // Keep v0 environment syncs from triggering Vite's automatic env-file restart.
+    // Variables are loaded explicitly below, so Vite does not need to watch the project env directory.
+    envDir: '/tmp/bolt-vite-env',
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     },
