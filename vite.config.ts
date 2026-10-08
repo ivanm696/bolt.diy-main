@@ -18,6 +18,13 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    server: {
+      watch: {
+        // v0 updates this file during environment sync; watching it causes
+        // overlapping dev servers and unstable sandbox preview ports.
+        ignored: ['**/.env.development.local'],
+      },
+    },
     resolve: {
       // Ensure a single instance of React across app code and pre-bundled deps.
       // Without this, Vite can end up with more than one copy of React, which
