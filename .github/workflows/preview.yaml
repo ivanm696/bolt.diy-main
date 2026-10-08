@@ -48,13 +48,11 @@ jobs:
       - name: Deploy to Cloudflare Pages
         if: steps.check-secrets.outputs.configured == 'true'
         id: deploy
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: bolt-diy-preview
-          directory: build/client
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy build/client --project-name bolt-diy-preview --branch "${{ github.head_ref }}"
 
       - name: Preview deployment not configured
         if: steps.check-secrets.outputs.configured == 'false'
